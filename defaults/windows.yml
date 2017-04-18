@@ -1,0 +1,16 @@
+---
+# default variables for Windwos
+
+oracle_server_jre_version_os: windows
+
+# available architecture
+# jre: i586, x64
+# server-jre: x64
+oracle_server_jre_version_os_arch: x64
+
+oracle_server_jre_os_supported: yes
+
+oracle_server_jre_paths:
+  default: "%PROGRAM FILES%/Java/"
+
+oracle_server_jre_tmpdir: "c:/temp/"

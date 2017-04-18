@@ -1,0 +1,56 @@
+---
+# tasks file for ansible-oracle-server-jre
+
+- name: include OS specific variables
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "defaults/{{ ansible_system | lower }}.yml"
+    - "defaults/{{ ansible_os_family | lower }}.yml"
+
+- name: include OS specific tasks
+  include: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_system | lower }}.yml"
+    - "{{ ansible_os_family | lower }}.yml"
+
+- name: include default tasks
+  include: "default.yml"
+
+- name: Check if .tar.gz file already exists
+  stat:
+    path: "{{ oracle_server_jre_tmpdir }}{{ oracle_server_jre_version_filename }}"
+  register: file_exists_result
+
+- name: download Java .tar.gz file
+  get_url:
+    headers='Cookie:gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie'
+    dest="{{ oracle_server_jre_tmpdir }}{{ oracle_server_jre_version_filename }}"
+    url="{{ oracle_server_jre_url }}"
+#  register: oracle_server_jre_download
+#  tags: download
+  when: file_exists_result.stat.exists == False
+
+- name: extract .tar.gz file
+  unarchive:
+    src="{{ oracle_server_jre_tmpdir }}{{ oracle_server_jre_version_filename }}"
+    dest="{{ oracle_server_jre_path }}"
+    remote_src=yes
+
+- name: set directory/file owner
+  file:
+    path: "{{ oracle_server_jre_path }}/{{ oracle_server_jre_version_string }}"
+    state: directory
+    owner: root
+    group: root
+    recurse: yes
+
+- debug:
+    msg:
+     - "[ {{ ansible_system }} ] [ {{ ansible_os_family }} ]"
+     - "oracle_server_jre_flavour: {{ oracle_server_jre_flavour }}"
+     - "oracle_server_jre_version_filename: {{ oracle_server_jre_version_filename }}"
+     - "oracle_server_jre_url: {{ oracle_server_jre_url }}"
+     - "oracle_server_jre_tmpdir: {{ oracle_server_jre_tmpdir }}"
+     - "oracle_server_jre_path: {{ oracle_server_jre_path }}"
+     - "oracle_server_jre_version_string: {{ oracle_server_jre_version_string }}"
+  when: "debug is defined and debug | default(false)"

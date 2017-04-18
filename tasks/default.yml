@@ -1,0 +1,12 @@
+---
+# default tasks file
+
+- name: set path
+  set_fact:
+    oracle_server_jre_path: "{{ oracle_server_jre_paths.default }}"
+  when: 'oracle_server_jre_path is not defined'
+
+- name: check if operating system is suported
+  fail:
+   msg: "The operating system ({{ ansible_system }} | {{ ansible_os_family }}) of the target machine ({{ inventory_hostname }}) is not supported."
+  when: oracle_server_jre_os_supported is not defined or not oracle_server_jre_os_supported

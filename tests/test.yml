@@ -1,0 +1,8 @@
+---
+- hosts: localhost
+  remote_user: root
+  roles:
+    - role: ansible-oracle-server-jre
+      oracle_server_jre_flavour: jre
+      debug: true
+  become: yes

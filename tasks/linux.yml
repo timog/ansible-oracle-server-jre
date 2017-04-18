@@ -1,0 +1,7 @@
+---
+# default tasks for Linux distributions
+
+- name: set path for RedHat
+  set_fact:
+    oracle_server_jre_path: "{{ oracle_server_jre_paths.redhat }}"
+  when: ansible_os_family=='RedHat'

@@ -1,0 +1,16 @@
+---
+# default variables for macOS
+
+oracle_server_jre_version_os: macosx
+
+# available architecture
+# jre: x64
+# server-jre: -
+oracle_server_jre_version_os_arch: x64
+
+oracle_server_jre_os_supported: yes
+
+oracle_server_jre_paths:
+  default: "/Library/Java/JavaVirtualMachines/"
+
+oracle_server_jre_tmpdir: "/tmp/"

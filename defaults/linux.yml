@@ -1,0 +1,17 @@
+---
+# default variables for Linux distributions
+
+oracle_server_jre_version_os: linux
+
+# available architecture
+# jre: i586, x64
+# server-jre: x64
+oracle_server_jre_version_os_arch: x64
+
+oracle_server_jre_os_supported: yes
+
+oracle_server_jre_paths:
+  default: "/usr/lib/jvm/"
+  redhat: "/opt/java/"
+
+oracle_server_jre_tmpdir: "/tmp/"
