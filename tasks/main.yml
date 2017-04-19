@@ -46,7 +46,7 @@
 
 - debug:
     msg:
-     - "{{ ansible_date_time.date }}"
+     - "{{ ansible_date_time.iso8601 }}"
      - "[ {{ ansible_system }} ] [ {{ ansible_os_family }} ]"
      - "oracle_server_jre_flavour: {{ oracle_server_jre_flavour }}"
      - "oracle_server_jre_version_filename: {{ oracle_server_jre_version_filename }}"
