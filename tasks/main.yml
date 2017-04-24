@@ -26,9 +26,16 @@
     headers='Cookie:gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie'
     dest="{{ oracle_server_jre_tmpdir }}{{ oracle_server_jre_version_filename }}"
     url="{{ oracle_server_jre_url }}"
-#  register: oracle_server_jre_download
-#  tags: download
   when: file_exists_result.stat.exists == False
+
+- name: ensure that {{ oracle_server_jre_path }} exists
+  file:
+    path: "{{ oracle_server_jre_path }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+    recurse: yes
 
 - name: extract .tar.gz file
   unarchive:
