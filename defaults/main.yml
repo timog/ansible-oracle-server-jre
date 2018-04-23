@@ -10,10 +10,10 @@ oracle_server_jre_filenamestart: "{{ (oracle_server_jre_flavour == 'jre') | tern
 
 # oracle java version
 oracle_server_jre_version: 8
-oracle_server_jre_version_update: 151
-oracle_server_jre_version_build: 12
+oracle_server_jre_version_update: 172
+oracle_server_jre_version_build: 11
 oracle_server_jre_version_string: "{{ oracle_server_jre_dirnamestart }}1.{{ oracle_server_jre_version }}.0_{{ oracle_server_jre_version_update }}"
-oracle_server_jre_version_url_hash: e758a0de34e24606bca991d704f6dcbf
+oracle_server_jre_version_url_hash: a58eab1ec242421181065cdc37240b08
 oracle_server_jre_version_filename: "{{ oracle_server_jre_filenamestart }}-{{ oracle_server_jre_version }}u{{ oracle_server_jre_version_update }}-{{ oracle_server_jre_version_os }}-{{ oracle_server_jre_version_os_arch }}.tar.gz"
 oracle_server_jre_url: "http://download.oracle.com/otn-pub/java/jdk/{{ oracle_server_jre_version }}u{{ oracle_server_jre_version_update }}-b{{ oracle_server_jre_version_build }}/{{ oracle_server_jre_version_url_hash }}/{{ oracle_server_jre_version_filename }}"
 
